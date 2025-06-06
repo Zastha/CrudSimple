@@ -1,0 +1,17 @@
+{
+  "name": "crudsimple",
+  "version": "1.0.0",
+  "main": "Scripts/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Scripts/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
+}
