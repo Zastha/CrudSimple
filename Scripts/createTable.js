@@ -45,6 +45,14 @@ export const createTables = async () =>{
         `);
 
         await execute(db, `
+            CREATE TABLE IF NOT EXISTS CLIENTES(
+                ID INTEGER PRIMARY KEY,
+                USERID INTEGER,
+                FOREIGN KEY (USERID) REFERENCES USUARIOS(ID)
+            );
+        `);
+
+        await execute(db, `
             CREATE TABLE IF NOT EXISTS INMUEBLES(
                 ID INTEGER PRIMARY KEY,
                 DIRECCION TEXT NOT NULL,

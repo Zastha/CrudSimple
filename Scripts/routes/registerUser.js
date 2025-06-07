@@ -1,10 +1,10 @@
 import express from "express";
 import sqlite3 from "sqlite3";
 import cors from "cors";
+const router = express.Router();
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+router.use(cors());
+router.use(express.json());
 
 
 
@@ -76,7 +76,8 @@ const registerEmployee = (db, nombre, apellido, email, telefono, password, tipo,
 
 
 //Registrar Usuario
-app.post("/api/register", async (req, res) => {
+//Registrar Usuario
+router.post("/register", async (req, res) => {
         
     const {nombre, apellido , email, telefono, password,tipo} = req.body;
     const db = new sqlite3.Database("../CrudEmpleados");
@@ -107,7 +108,5 @@ app.post("/api/register", async (req, res) => {
         
     }
 }
-
 );
-
-app.listen(3000, () => console.log("Servidor backend en puerto 3000"));
+export default router;

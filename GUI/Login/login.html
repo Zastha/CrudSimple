@@ -41,6 +41,13 @@
     <div class="popup-content">
       <h2>Registrarse</h2>
       <form>
+          <label for = "TipoUsuario">Tipo de usuario: </label>
+        <select name = "TipoUsuario" id = "TipoUsuario">
+          <option value = "Administrador">Administrador</option>
+          <option value = "Agente Inmobiliario">Agente Inmobiliario</option>
+          <option value = "Cliente">Cliente</option>
+        </select>
+        <br><br>
         <label for="registerName">Nombre</label>
         <input type="text" id="registerName" placeholder="Manolo">
         <label for="registerLastName">Apellido</label>
@@ -53,13 +60,9 @@
         <input type="password" id="registerPassword" placeholder="••••••••">
         <label for="registerConfirmPassword">Confirmar contraseña</label>
         <input type="password" id="registerConfirmPassword" placeholder="••••••••">
-        <label for = "TipoUsuario">Tipo de usuario: </label>
-        <select name = "TipoUsuario" id = "TipoUsuario">
-          <option value = "Administrador">Administrador</option>
-          <option value = "Agente Inmobiliario">Agente Inmobiliario</option>
-          <option value = "Cliente">Cliente</option>
-        </select>
-        <br><br>
+        <label for="registerJefe">Administrador A Cargo: </label>
+        <input type="jefe" id="registerJefe" placeholder="1">
+      
         <button type="submit" class = "btn">Registrarse</button>
 
       </form>

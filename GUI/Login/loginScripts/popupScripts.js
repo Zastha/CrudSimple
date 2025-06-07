@@ -41,27 +41,52 @@ document.addEventListener("DOMContentLoaded", () => {
         const email = document.getElementById("loginEmail").value;
         const password = document.getElementById("loginPassword").value;
 
+    if(!validateRegister.validatePasswordNotEmpty(password)){
+        alert("La contraseña no puede estar vacia");
+        return;
+      }
+
         try {
-            const response = await fetch('usuarios.json');
-            const users = await response.json();
 
-            const user = users.find(user => user.email === email && user.password === password);
+        const response = await fetch("http://localhost:3000/api/login", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({email,password})
+        });
 
-            if (user) {
-                if (user.email === "victor.bb@gmail.com") {
-                    window.location.href = "../LandingPage/LandingpageCliente.html";
-                } else if (user.email === "normaGodoy@gh.com") {
-                    window.location.href = "../AdministradorInicio/InicioAdmin.html";
-                } else if (user.email === "josueCelaya@gh.com") {
-                    window.location.href = "../VistaVentanaCitaAgendaTERMINADO/index.html";
-                }
-            } else {
-                alert("Correo o contraseña incorrectos");
-            }
+        const data = await response.json();
+        
+       if(response.ok){
+          alert("Login realizado correctamente");
+          
+        }else{
+          alert(data.message || "Error en el login");
+        }
+          
+
         } catch (error) {
-            console.error("Error al leer el archivo usuarios.json", error);
+            console.error("Error en el login, frontend", error);
         }
     });
+
+    const tipoUsuarioSelect = document.getElementById("TipoUsuario");
+    const telefonoField = document.getElementById("registerPhone").parentElement;
+
+    tipoUsuarioSelect.addEventListener("change", () =>{
+      const tipo = tipoUsuarioSelect.value;
+
+      if(tipo === "Cliente"){
+        telefonoField.style.display = "none";
+      }else{
+        
+
+        telefonoField.style.display = "";
+      }
+    }
+    
+    )
+
+
 
     //Handler para el Registro
     const registerForm = document.querySelector("#registerPopup form");
