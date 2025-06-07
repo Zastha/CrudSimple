@@ -1,3 +1,5 @@
+import { validateRegister } from "./registerValidator.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   
     const registerBtn = document.getElementById("registerBtn");
@@ -74,6 +76,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("registerPassword").value;
       const confirmPassword =document.getElementById("registerConfirmPassword").value;
       const tipo = document.getElementById("TipoUsuario").value;
+
+
+      if(!validateRegister.validatePasswordNotEmpty(password)){
+        alert("La contraseña no puede estar vacia");
+        return;
+      }
+
+      if(!validateRegister.validatePasswordLength(password)){
+        alert("La contraseña no puede tener menos de 4 caracteres");
+        return;
+      }
+
+      if(!validateRegister.validateConfirmPassword(password,confirmPassword)){
+        alert("No coinciden las contraseñas");
+        return;
+      }
+
+    
 
       try{
         const response = await fetch("http://localhost:3000/api/register", {

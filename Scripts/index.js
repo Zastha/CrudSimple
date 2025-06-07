@@ -34,11 +34,30 @@ async function showAllSchemas() {
                                     console.log(
                                         `    - ${fk.from} → ${fk.table}(${fk.to})`
                                     );
+
                                 });
                             } else {
                                 console.log("  Sin claves foráneas.");
                             }
-                            resolve();
+
+                            db.all(`SELECT * FROM ${table.name};`, (err, rows) => {
+                                if(err){
+                                    console.error(`Error al obtener los registros de la tabla ${table.name}`);
+                                }else{
+                                    console.log(` Datos de la tabla ${table.name}`);
+                                    if (rows.length === 0){
+                                        console.log(`La tabla ${table.name} esta vacia`)
+                                    }else{
+                                        rows.forEach( row =>{
+                                            console.log("   ",row);
+                                        });
+                                    }
+                                }
+                                  resolve();
+                            }
+
+                            )
+                          
                         });
                     });
                 });
