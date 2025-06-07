@@ -53,7 +53,15 @@
         <input type="password" id="registerPassword" placeholder="••••••••">
         <label for="registerConfirmPassword">Confirmar contraseña</label>
         <input type="password" id="registerConfirmPassword" placeholder="••••••••">
-        <a href="../LandingPage/LandingPageCliente.html" class="btn">Registrarse</a>
+        <label for = "TipoUsuario">Tipo de usuario: </label>
+        <select name = "TipoUsuario" id = "TipoUsuario">
+          <option value = "Administrador">Administrador</option>
+          <option value = "Agente Inmobiliario">Agente Inmobiliario</option>
+          <option value = "Cliente">Cliente</option>
+        </select>
+        <br><br>
+        <button type="submit" class = "btn">Registrarse</button>
+
       </form>
       <button class="close-popup" data-close="registerPopup">Cerrar</button>
     </div>

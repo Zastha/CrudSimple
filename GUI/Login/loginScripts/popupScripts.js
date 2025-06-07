@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
     const registerBtn = document.getElementById("registerBtn");
     const loginBtn = document.getElementById("loginBtn");
     const registerPopup = document.getElementById("registerPopup");
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    //Handler para el login
     const loginForm = document.querySelector("#loginPopup form");
 
     loginForm.addEventListener("submit", async (event) => {
@@ -58,4 +60,46 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error al leer el archivo usuarios.json", error);
         }
     });
+
+    //Handler para el Registro
+    const registerForm = document.querySelector("#registerPopup form");
+
+    registerForm.addEventListener("submit", async(event) =>{
+      event.preventDefault();
+
+      const nombre = document.getElementById("registerName").value;
+      const apellido = document.getElementById("registerLastName").value;
+      const email = document.getElementById("registerEmail").value;
+      const telefono = document.getElementById("registerPhone").value;
+      const password = document.getElementById("registerPassword").value;
+      const confirmPassword =document.getElementById("registerConfirmPassword").value;
+      const tipo = document.getElementById("TipoUsuario").value;
+
+      try{
+        const response = await fetch("http://localhost:3000/api/register", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({nombre,apellido,email,telefono,password,tipo})
+        });
+
+        const data = await response.json();
+
+        if(response.ok){
+          alert("Usuario registrado correctamente");
+          
+        }else{
+          alert(data.message || "Error al registrar usuario");
+        }
+
+        
+      }catch(error){
+          console.error("Error al registrar el usuario",error);
+          alert("Error de conexion con el servidor");
+        }
+
+
+    }
+    )
 });
+
+

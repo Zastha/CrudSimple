@@ -13,9 +13,10 @@ export const createTables = async () =>{
         `);
 
         await execute(db, `
-            CREATE TABLE IF NOT EXISTS USUARIO(
+            CREATE TABLE IF NOT EXISTS USUARIOS(
                 ID INTEGER PRIMARY KEY,
                 NOMBRE TEXT NOT NULL,
+                APELLIDO TEXT NOT NULL,
                 EMAIL TEXT NOT NULL,
                 PASSWORD TEXT NOT NULL,
                 TIPO INTEGER,
@@ -26,18 +27,20 @@ export const createTables = async () =>{
         await execute(db, `
             CREATE TABLE IF NOT EXISTS ADMINISTRADORES(
                 ID INTEGER PRIMARY KEY,
-                NOMBRE TEXT NOT NULL,
-                TELEFONO TEXT NOT NULL
+                TELEFONO TEXT NOT NULL,
+                USERID INTEGER,
+                FOREIGN KEY (USERID) REFERENCES USUARIOS(ID)
             );
         `);
 
         await execute(db, `
             CREATE TABLE IF NOT EXISTS EMPLEADOS(
                 ID INTEGER PRIMARY KEY,
-                NOMBRE TEXT NOT NULL,
                 TELEFONO TEXT NOT NULL,
                 JEFE INTEGER,
-                FOREIGN KEY (JEFE) REFERENCES ADMINISTRADORES(ID)
+                USERID INTEGER,
+                FOREIGN KEY (JEFE) REFERENCES ADMINISTRADORES(ID),
+                FOREIGN KEY (USERID) REFERENCES USUARIOS(ID)
             );
         `);
 
