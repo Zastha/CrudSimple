@@ -70,17 +70,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const tipoUsuarioSelect = document.getElementById("TipoUsuario");
-    const telefonoField = document.getElementById("registerPhone").parentElement;
+    const telefonoContainer = document.getElementById("telefonoContainer");
 
     tipoUsuarioSelect.addEventListener("change", () =>{
       const tipo = tipoUsuarioSelect.value;
 
       if(tipo === "Cliente"){
-        telefonoField.style.display = "none";
+        telefonoContainer.style.display = "none";
       }else{
         
 
-        telefonoField.style.display = "";
+        telefonoContainer.style.display = "";
       }
     }
     
